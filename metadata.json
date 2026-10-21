@@ -1,0 +1,6 @@
+{
+  "name": "Hearing Clinic",
+  "description": "Lahore's trusted hearing health provider since 1992 on MM Alam Road, Gulberg III. Diagnostic audiology, digital hearing aid fittings, and speech therapy.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

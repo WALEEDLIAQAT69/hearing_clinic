@@ -1,0 +1,49 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    match /bookings/{id} {
+      allow read, update, delete: if request.auth != null;
+      allow create: if request.resource.data.name is string
+        && request.resource.data.name.size() > 0
+        && request.resource.data.name.size() <= 200
+        && request.resource.data.phone is string
+        && request.resource.data.phone.size() > 0
+        && request.resource.data.phone.size() <= 30
+        && (!('email' in request.resource.data) || (request.resource.data.email is string && request.resource.data.email.size() <= 200))
+        && request.resource.data.service is string
+        && request.resource.data.service.size() > 0
+        && request.resource.data.service.size() <= 100
+        && request.resource.data.preferredDate is string
+        && request.resource.data.preferredDate.size() > 0
+        && request.resource.data.preferredDate.size() <= 40
+        && (!('message' in request.resource.data) || (request.resource.data.message is string && request.resource.data.message.size() <= 1000))
+        && request.resource.data.status == "pending"
+        && request.resource.data.createdAt == request.time;
+    }
+
+    match /contacts/{id} {
+      allow read, update, delete: if request.auth != null;
+      allow create: if request.resource.data.name is string
+        && request.resource.data.name.size() > 0
+        && request.resource.data.name.size() <= 200
+        && request.resource.data.subject is string
+        && request.resource.data.subject.size() > 0
+        && request.resource.data.subject.size() <= 200
+        && request.resource.data.message is string
+        && request.resource.data.message.size() > 0
+        && request.resource.data.message.size() <= 1000
+        && (
+          (('phone' in request.resource.data) && request.resource.data.phone is string && request.resource.data.phone.size() > 0 && request.resource.data.phone.size() <= 30)
+          ||
+          (('email' in request.resource.data) && request.resource.data.email is string && request.resource.data.email.size() > 0 && request.resource.data.email.size() <= 200)
+        )
+        && request.resource.data.status == "new"
+        && request.resource.data.createdAt == request.time;
+    }
+
+    match /appointments/{id} {
+      allow read, write, update, delete: if request.auth != null;
+    }
+  }
+}
+

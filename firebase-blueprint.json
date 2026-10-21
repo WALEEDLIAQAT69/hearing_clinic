@@ -1,0 +1,185 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "entities": {
+    "Booking": {
+      "title": "Booking",
+      "description": "Patient clinic booking request created via public booking form",
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200,
+          "description": "Patient full name"
+        },
+        "phone": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 30,
+          "description": "Patient contact phone number"
+        },
+        "email": {
+          "type": "string",
+          "maxLength": 200,
+          "description": "Patient optional email address"
+        },
+        "service": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 100,
+          "description": "Selected clinical audiology service"
+        },
+        "preferredDate": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 40,
+          "description": "Preferred appointment date or timing text"
+        },
+        "message": {
+          "type": "string",
+          "maxLength": 1000,
+          "description": "Optional patient message or clinical symptoms"
+        },
+        "status": {
+          "type": "string",
+          "enum": ["pending", "confirmed", "completed", "cancelled"],
+          "description": "Booking status"
+        },
+        "createdAt": {
+          "type": "string",
+          "description": "Server timestamp of creation"
+        }
+      },
+      "required": ["name", "phone", "service", "preferredDate", "status", "createdAt"]
+    },
+    "Contact": {
+      "title": "Contact",
+      "description": "General patient inquiry or question submitted via public contact form",
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200,
+          "description": "Inquirer full name"
+        },
+        "phone": {
+          "type": "string",
+          "maxLength": 30,
+          "description": "Inquirer contact phone number"
+        },
+        "email": {
+          "type": "string",
+          "maxLength": 200,
+          "description": "Inquirer email address"
+        },
+        "subject": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200,
+          "description": "Inquiry subject"
+        },
+        "message": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 1000,
+          "description": "Inquiry message text"
+        },
+        "status": {
+          "type": "string",
+          "enum": ["new", "read", "responded"],
+          "description": "Inquiry status"
+        },
+        "createdAt": {
+          "type": "string",
+          "description": "Server timestamp of creation"
+        }
+      },
+      "required": ["name", "subject", "message", "status", "createdAt"]
+    },
+    "Appointment": {
+      "title": "Appointment",
+      "description": "Patient consultation and audiology appointment booking inquiry",
+      "type": "object",
+      "properties": {
+        "patientName": {
+          "type": "string",
+          "minLength": 2,
+          "maxLength": 80,
+          "description": "Full name of the patient"
+        },
+        "phone": {
+          "type": "string",
+          "minLength": 7,
+          "maxLength": 25,
+          "description": "Verified contact phone number"
+        },
+        "email": {
+          "type": "string",
+          "maxLength": 100,
+          "description": "Optional patient email address"
+        },
+        "serviceId": {
+          "type": "string",
+          "maxLength": 50,
+          "description": "Identifier for the requested clinical service"
+        },
+        "serviceName": {
+          "type": "string",
+          "maxLength": 100,
+          "description": "Readable name of the audiology service"
+        },
+        "preferredDate": {
+          "type": "string",
+          "maxLength": 20,
+          "description": "Requested date in YYYY-MM-DD format"
+        },
+        "preferredTime": {
+          "type": "string",
+          "maxLength": 50,
+          "description": "Requested time window"
+        },
+        "notes": {
+          "type": "string",
+          "maxLength": 500,
+          "description": "Optional notes or symptoms reported by patient"
+        },
+        "status": {
+          "type": "string",
+          "enum": ["pending", "confirmed", "completed", "cancelled"],
+          "description": "Appointment processing status"
+        },
+        "internalNotes": {
+          "type": "string",
+          "maxLength": 1000,
+          "description": "Confidential staff notes"
+        },
+        "createdAt": {
+          "type": "string",
+          "maxLength": 50,
+          "description": "ISO timestamp of creation"
+        },
+        "updatedAt": {
+          "type": "string",
+          "maxLength": 50,
+          "description": "ISO timestamp of last update"
+        }
+      },
+      "required": ["patientName", "phone", "serviceId", "serviceName", "preferredDate", "preferredTime", "status", "createdAt", "updatedAt"]
+    }
+  },
+  "firestore": {
+    "/bookings/{id}": {
+      "schema": "Booking",
+      "description": "Public patient booking submissions; read/update/delete restricted strictly to authenticated admin"
+    },
+    "/contacts/{id}": {
+      "schema": "Contact",
+      "description": "Public contact and inquiry submissions; read/update/delete restricted strictly to authenticated admin"
+    },
+    "/appointments/{appointmentId}": {
+      "schema": "Appointment",
+      "description": "Legacy appointment booking records, protected by staff authentication"
+    }
+  }
+}

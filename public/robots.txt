@@ -1,0 +1,10 @@
+# Robots.txt for Hearing Clinic Lahore (https://hearingclinic.pk)
+User-agent: *
+Allow: /
+Allow: /assets/
+Disallow: /admin/
+Disallow: /admin/login.html
+Disallow: /admin/dashboard.html
+Disallow: /admin/reset-password.html
+
+Sitemap: https://hearingclinic.pk/sitemap.xml

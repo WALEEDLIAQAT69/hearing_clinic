@@ -1,0 +1,51 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+  
+  --color-clinic-teal: #0D9488;
+  --color-clinic-teal-dark: #0F766E;
+  --color-clinic-teal-light: #14B8A6;
+  --color-clinic-teal-soft: #F0FDFA;
+  --color-clinic-sand: #F8FAFC;
+  --color-clinic-cream: #FFFFFF;
+  --color-clinic-border: #E2E8F0;
+  --color-clinic-border-subtle: #F1F5F9;
+  --color-clinic-text: #0F172A;
+  --color-clinic-muted: #475569;
+}
+
+:root {
+  font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+  color: #0F172A;
+  background-color: #F8FAFC;
+}
+
+html, body {
+  overflow-x: hidden;
+  max-width: 100vw;
+  width: 100%;
+}
+
+/* Ensure no child container can cause accidental horizontal scrolling */
+#root {
+  overflow-x: clip;
+  max-width: 100%;
+  width: 100%;
+}
+
+.font-editorial {
+  font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+  font-weight: 800;
+  letter-spacing: -0.025em;
+}
+
+.font-sans-body {
+  font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+}
+
+/* Custom focus ring for high-standard accessibility */
+*:focus-visible {
+  outline: 2px solid #0D9488;
+  outline-offset: 2px;
+}

@@ -1,0 +1,37 @@
+{
+  "id": "hearing-clinic-lahore-pwa",
+  "name": "Hearing Clinic Lahore",
+  "short_name": "Hearing Clinic",
+  "description": "Lahore's premier audiology and digital hearing care clinic since 1992 on MM Alam Road, Gulberg III.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "background_color": "#042f2e",
+  "theme_color": "#0d9488",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "192x192 512x512",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ],
+  "categories": ["medical", "health", "lifestyle"],
+  "shortcuts": [
+    {
+      "name": "Book Appointment",
+      "short_name": "Book",
+      "description": "Schedule a diagnostic hearing evaluation",
+      "url": "/#contact",
+      "icons": [{ "src": "/favicon.svg", "sizes": "96x96" }]
+    },
+    {
+      "name": "Ala Samat Guide",
+      "short_name": "Prices",
+      "description": "View hearing aid price tiers and features in Pakistan",
+      "url": "/#pricing",
+      "icons": [{ "src": "/favicon.svg", "sizes": "96x96" }]
+    }
+  ]
+}
